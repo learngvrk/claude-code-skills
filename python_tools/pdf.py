@@ -108,9 +108,9 @@ def merge_pdfs(input_paths, output_path):
 
 # merge_pdfs(input_files, output_file)
 
-base_location = '/Users/ranjithgonugunta/Documents/Madhuri/H1B_FILING'
-input_file = 'PR Charugundla Madhuri H1B Approval Packet 29 Sep 2025.pdf'
-output_file = 'Madhuri-2025-I797.pdf'
+base_location = '/Users/username/Documents/Contracts'
+input_file = 'Contract_Bundle_2025.pdf'
+output_file = 'Signed_Agreement.pdf'
 # Example usage
 input_file_path = base_location+'/'+ input_file
 output_file_path = base_location+'/'+ output_file

@@ -108,12 +108,12 @@ def repair_with_ghostscript(input_path, repaired_path):
 
 ## Usage Examples
 
-### Example 1: Extract I-797 Pages from H1B Packet
+### Example 1: Extract Signed Agreement Pages from Contract Bundle
 ```python
-# Extract pages 7-8 (indices 6-7) from Tax approval packet
+# Extract pages 7-8 (indices 6-7) from a contract bundle
 extract_pages(
-    input_path='/Users/username/Documents/Tax_Approval/Tax_Approval_Packet.pdf',
-    output_path='/Users/username/Documents/Tax_Approval/Tax.pdf',
+    input_path='/Users/username/Documents/Contracts/Contract_Bundle_2025.pdf',
+    output_path='/Users/username/Documents/Contracts/Signed_Agreement.pdf',
     start_page=6,  # 0-indexed
     end_page=7
 )

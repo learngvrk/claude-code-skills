@@ -74,15 +74,15 @@ Automatically detect and repair corrupted PDF files.
 
 ## Usage Examples
 
-### Example 1: Extract I-797 from H1B Packet
+### Example 1: Extract Signed Agreement from Contract Bundle
 
 **Your prompt:**
 ```
-Extract pages 7-8 from this doc approval packet:
-/Users/username/Documents/tax_filing/Tax_Packet.pdf
+Extract pages 7-8 from this contract bundle:
+/Users/username/Documents/Contracts/Contract_Bundle_2025.pdf
 
 Save it as:
-/Users/username/Documents/tax_filing/required_docs.pdf
+/Users/username/Documents/Contracts/Signed_Agreement.pdf
 ```
 
 **What Claude will do:**

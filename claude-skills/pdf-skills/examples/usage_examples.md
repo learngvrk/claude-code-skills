@@ -5,17 +5,17 @@ This file contains detailed examples of how to use the PDF Manipulation skill wi
 ## Example 1: Extract Specific Pages (Your Original Use Case)
 
 ### Scenario
-You have an H1B approval packet PDF with 50 pages. You need to extract just pages 7-8 which contain the I-797 approval notice.
+You have an employment contract bundle PDF with 50 pages. You need to extract just pages 7-8 which contain the signed agreement summary.
 
 ### What to Say to Claude
 
 ```
-I have an H1B approval packet and I need to extract the I-797 pages.
+I have an employment contract bundle and I need to extract the signed agreement pages.
 
-File location: /Users/ranjithgonugunta/Documents/Madhuri/H1B_FILING/PR Charugundla Madhuri H1B Approval Packet 29 Sep 2025.pdf
+File location: /Users/username/Documents/Contracts/Contract_Bundle_2025.pdf
 
 Please extract pages 7-8 and save them as:
-/Users/ranjithgonugunta/Documents/Madhuri/H1B_FILING/Madhuri-2025-I797.pdf
+/Users/username/Documents/Contracts/Signed_Agreement.pdf
 ```
 
 ### What Claude Will Do
@@ -35,9 +35,9 @@ Please extract pages 7-8 and save them as:
 ```
 ✓ PDF Operation Complete
 
-Operation: Extracted pages 7-8 from H1B approval packet
-Input:  PR Charugundla Madhuri H1B Approval Packet 29 Sep 2025.pdf (50 pages)
-Output: Madhuri-2025-I797.pdf (2 pages)
+Operation: Extracted pages 7-8 from contract bundle
+Input:  Contract_Bundle_2025.pdf (50 pages)
+Output: Signed_Agreement.pdf (2 pages)
 Status: Success (no repair needed)
 ```
 
@@ -53,12 +53,12 @@ You scanned a document in multiple parts and have separate PDF files for each pa
 ```
 I have three scanned PDFs that I need to merge into one document:
 
-1. /Users/ranjithgonugunta/Documents/Madhuri/H1B_FILING/IMG_0002.pdf
-2. /Users/ranjithgonugunta/Documents/Madhuri/H1B_FILING/IMG_0003.pdf
-3. /Users/ranjithgonugunta/Documents/Madhuri/H1B_FILING/IMG_0004.pdf
+1. /Users/username/Documents/Scans/scan_page1.pdf
+2. /Users/username/Documents/Scans/scan_page2.pdf
+3. /Users/username/Documents/Scans/scan_page3.pdf
 
 Please merge them in this order and save as:
-/Users/ranjithgonugunta/Documents/Madhuri/H1B_FILING/Complete_Scan.pdf
+/Users/username/Documents/Scans/Complete_Scan.pdf
 ```
 
 ### What Claude Will Do
@@ -73,11 +73,11 @@ Please merge them in this order and save as:
 ```python
 merge_pdfs(
     input_paths=[
-        '/Users/ranjithgonugunta/Documents/Madhuri/H1B_FILING/IMG_0002.pdf',
-        '/Users/ranjithgonugunta/Documents/Madhuri/H1B_FILING/IMG_0003.pdf',
-        '/Users/ranjithgonugunta/Documents/Madhuri/H1B_FILING/IMG_0004.pdf'
+        '/Users/username/Documents/Scans/scan_page1.pdf',
+        '/Users/username/Documents/Scans/scan_page2.pdf',
+        '/Users/username/Documents/Scans/scan_page3.pdf'
     ],
-    output_path='/Users/ranjithgonugunta/Documents/Madhuri/H1B_FILING/Complete_Scan.pdf'
+    output_path='/Users/username/Documents/Scans/Complete_Scan.pdf'
 )
 ```
 

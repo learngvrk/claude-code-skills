@@ -220,7 +220,7 @@ Combine multiple PDF documents into a single output file while preserving all pa
 ```markdown
 ## Usage Examples
 
-### Example 1: Extract I-797 Pages from H1B Packet
+### Example 1: Extract Signed Agreement Pages from Contract Bundle
 [Complete example with actual paths and expected output]
 ```
 
