@@ -62,7 +62,7 @@ Combine multiple PDF files into one document.
 Extract specific page ranges from PDFs.
 
 **Example prompts:**
-> "Extract pages 7-8 from the H1B packet"
+> "Extract pages 7-8 from the document packet"
 > "Get just the first page from this document"
 > "Extract pages 10 through 20 from the report"
 
@@ -78,11 +78,11 @@ Automatically detect and repair corrupted PDF files.
 
 **Your prompt:**
 ```
-Extract pages 7-8 from this H1B approval packet:
-/Users/username/Documents/H1B_FILING/H1B_Approval_Packet.pdf
+Extract pages 7-8 from this doc approval packet:
+/Users/username/Documents/tax_filing/Tax_Packet.pdf
 
 Save it as:
-/Users/username/Documents/H1B_FILING/I797.pdf
+/Users/username/Documents/tax_filing/required_docs.pdf
 ```
 
 **What Claude will do:**
