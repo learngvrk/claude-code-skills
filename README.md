@@ -146,17 +146,24 @@ python-docx assembles pages
 ### Install
 
 ```bash
-# Copy skill to Claude's skills directory
-cp -r claude-skills/handwritten-ocr ~/.claude/skills/
+# 1. Register the skill with Claude Code
+#    (copies SKILL.md + launcher scripts so Claude knows the skill exists)
+mkdir -p ~/.claude/skills/handwritten-ocr/scripts
+cp claude-skills/handwritten-ocr/SKILL.md ~/.claude/skills/handwritten-ocr/
+cp claude-skills/handwritten-ocr/skills-scripts/*.py ~/.claude/skills/handwritten-ocr/scripts/
 
-# Set up the web app
+# 2. Set up the web app dependencies (stays in the repo folder)
 cd claude-skills/handwritten-ocr
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 
-# Add your Anthropic API key
+# 3. Add your Anthropic API key
 echo "ANTHROPIC_API_KEY=sk-ant-YOUR_KEY_HERE" > .env
 ```
+
+> **Why two locations?**
+> `~/.claude/skills/` is where Claude Code looks for skills at startup (SKILL.md + launchers).
+> The Flask web app and Python pipeline stay in the cloned repo — the launchers reference them by path.
 
 ### Use
 
@@ -251,14 +258,18 @@ cd claude-code-skills
 cp -r claude-skills/pdf-skills ~/.claude/skills/
 pip install PyPDF2 pikepdf
 
-# 3. Install the OCR skill + web app
-cp -r claude-skills/handwritten-ocr ~/.claude/skills/
+# 3. Register the OCR skill with Claude Code
+mkdir -p ~/.claude/skills/handwritten-ocr/scripts
+cp claude-skills/handwritten-ocr/SKILL.md ~/.claude/skills/handwritten-ocr/
+cp claude-skills/handwritten-ocr/skills-scripts/*.py ~/.claude/skills/handwritten-ocr/scripts/
+
+# 4. Set up the OCR web app (stays in repo folder)
 cd claude-skills/handwritten-ocr
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 echo "ANTHROPIC_API_KEY=sk-ant-YOUR_KEY" > .env
 
-# 4. Open Claude Code and try it
+# 5. Open Claude Code and try it
 # > merge doc1.pdf and doc2.pdf into one
 # > convert my handwritten notes at ~/Desktop/scan.pdf to Word
 # > open the OCR web app

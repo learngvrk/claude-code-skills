@@ -6,51 +6,62 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a Python utilities repository focused on:
 1. **PDF Manipulation** - Tools for merging, extracting pages, and repairing PDFs
-2. **Claude Skills** - Anthropic Skills format for AI-assisted PDF operations
-3. **Call Analytics** - Audio transcription (Whisper) and text summarization (NLTK)
+2. **Claude Skills** - Anthropic Skills format for AI-assisted PDF operations and Handwritten OCR
 
 ## Project Structure
 
 ```
 /Users/ranjithgonugunta/Documents/Python/
-├── tools/                    # Standalone PDF utilities
-│   └── pdf.py               # Core PDF functions (merge, extract, repair)
-├── claude-skills/           # Anthropic Skills format (SKILL.md based)
-│   └── pdf-manipulation/    # AI-loadable PDF skill
-├── skills/                  # Python skills registry system
-│   ├── skill_manager.py     # get_skill('pdf') interface
-│   └── pdf_skill/           # PDFSkill class wrapper
-└── Call_Analytics/          # Audio processing utilities
-    ├── whisper_m4a.py       # Whisper transcription
-    └── summarize.py         # NLTK extractive summarization
+├── python_tools/                     # Standalone PDF utilities
+│   └── pdf.py                        # Core PDF functions (merge, extract, repair)
+├── claude-skills/                    # Anthropic Skills format (SKILL.md based)
+│   ├── pdf-skills/                   # AI-loadable PDF skill (merge, extract, repair)
+│   │   └── SKILL.md
+│   └── handwritten-ocr/             # Handwritten PDF → Word skill + Flask web app
+│       ├── SKILL.md
+│       ├── skills-scripts/           # Launcher scripts (CLI + web UI)
+│       ├── app.py                    # Flask web server
+│       ├── config.py
+│       ├── core/                     # OCR pipeline (PyMuPDF, Claude Vision, docx)
+│       ├── templates/                # Web UI
+│       └── requirements.txt
+└── python_framework_implementation/ # Python skills registry system
+    ├── skill_manager.py              # get_skill('pdf') interface
+    └── pdf/                          # PDFSkill class wrapper
 ```
 
 ## Common Commands
 
-### PDF Operations
+### PDF Skill
 
 ```bash
 # Install dependencies
 pip install PyPDF2 pikepdf
+brew install ghostscript qpdf
 
-# Using skills system
-python -c "from skills.skill_manager import get_skill; pdf = get_skill('pdf')"
-
-# Direct script usage
-python tools/pdf.py
+# Register skill with Claude Code
+cp -r claude-skills/pdf-skills ~/.claude/skills/
 ```
 
-### Call Analytics
+### Handwritten OCR Skill
 
 ```bash
 # Install dependencies
-pip install openai-whisper nltk
+cd claude-skills/handwritten-ocr
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+echo "ANTHROPIC_API_KEY=sk-ant-YOUR_KEY" > .env
 
-# Transcribe audio
-python Call_Analytics/whisper_m4a.py
+# Register skill with Claude Code
+mkdir -p ~/.claude/skills/handwritten-ocr/scripts
+cp claude-skills/handwritten-ocr/SKILL.md ~/.claude/skills/handwritten-ocr/
+cp claude-skills/handwritten-ocr/skills-scripts/*.py ~/.claude/skills/handwritten-ocr/scripts/
+```
 
-# Summarize transcript
-python Call_Analytics/summarize.py
+### Python Framework (no Claude required)
+
+```bash
+python -c "from python_framework_implementation.skill_manager import get_skill; pdf = get_skill('pdf')"
 ```
 
 ## Architecture
@@ -59,11 +70,11 @@ python Call_Analytics/summarize.py
 
 This repo has two parallel approaches to skills:
 
-1. **Anthropic Skills** (`claude-skills/`): Uses `SKILL.md` files with YAML frontmatter that Claude automatically loads. The pdf-manipulation skill lives here.
+1. **Anthropic Skills** (`claude-skills/`): Uses `SKILL.md` files with YAML frontmatter that Claude automatically loads. Triggered by natural language prompts in Claude Code.
 
-2. **Python Skills Registry** (`skills/`): A programmatic approach using `SkillManager` and a registry pattern. Access via `get_skill('pdf')`.
+2. **Python Skills Registry** (`python_framework_implementation/`): A programmatic approach using `SkillManager` and a registry pattern. Importable in any Python script without Claude.
 
-Both wrap the same underlying functionality from `tools/pdf.py`.
+Both wrap the same underlying functionality from `python_tools/pdf.py`.
 
 ### PDF Processing Flow
 
@@ -75,6 +86,16 @@ Input PDF → PyPDF2.PdfReader → [Repair if needed] → PyPDF2.PdfWriter → O
                             Ghostscript (fallback)
 ```
 
+### Handwritten OCR Flow
+
+```
+Scanned PDF
+    → PyMuPDF renders each page → PNG (150 DPI)
+    → Claude Vision API transcribes handwriting
+    → python-docx assembles output with page breaks
+    → output.docx
+```
+
 ### Page Numbering Convention
 
 - **0-indexed internally**: Page 7 in a PDF viewer = index 6 in code
@@ -82,10 +103,13 @@ Input PDF → PyPDF2.PdfReader → [Repair if needed] → PyPDF2.PdfWriter → O
 
 ## Key Files
 
-- `tools/pdf.py:50` - `extract_pages()` with auto-repair
-- `tools/pdf.py:92` - `merge_pdfs()` function
-- `skills/skill_manager.py:83` - `get_skill()` convenience function
-- `claude-skills/pdf-manipulation/SKILL.md` - Anthropic skill definition
+- `python_tools/pdf.py` - Core PDF functions (merge, extract, repair)
+- `python_framework_implementation/skill_manager.py` - `get_skill()` convenience function
+- `claude-skills/pdf-skills/SKILL.md` - PDF manipulation skill definition
+- `claude-skills/handwritten-ocr/SKILL.md` - Handwritten OCR skill definition
+- `claude-skills/handwritten-ocr/skills-scripts/run_ocr.py` - CLI launcher
+- `claude-skills/handwritten-ocr/skills-scripts/launch_webapp.py` - Web UI launcher
+- `claude-skills/handwritten-ocr/core/` - OCR pipeline modules
 
 ## Dependencies
 
@@ -95,6 +119,9 @@ Input PDF → PyPDF2.PdfReader → [Repair if needed] → PyPDF2.PdfWriter → O
 - Ghostscript (system package, `brew install ghostscript`)
 - qpdf (system package, `brew install qpdf`)
 
-### Call Analytics
-- openai-whisper
-- nltk (with stopwords and punkt tokenizer)
+### Handwritten OCR
+- PyMuPDF >= 1.24.0 (PDF to image rendering)
+- anthropic >= 0.34.0 (Claude Vision API)
+- python-docx >= 1.1.0 (Word document assembly)
+- flask >= 3.0.0 (web UI)
+- python-dotenv >= 1.0.0

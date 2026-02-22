@@ -25,6 +25,8 @@ extract_pages.py
 meeting.txt
 ANTHROPIC_SKILLS_SUMMARY.md
 SKILLS_OVERVIEW.md
+medium-article.md
+visual selection.png
 
 # ── Local Claude Code settings (machine-specific, not repo content) ───────────
 .claude/
