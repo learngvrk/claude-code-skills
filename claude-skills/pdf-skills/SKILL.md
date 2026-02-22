@@ -40,7 +40,7 @@ Extract specific pages from a PDF document to create a new PDF with just those p
 
 **When to use:**
 - Extracting specific sections from large documents
-- Isolating important pages (e.g., I-797 from H1B packets)
+- Isolating important pages
 - Creating excerpts or summaries
 - Splitting documents by topic
 
@@ -110,10 +110,10 @@ def repair_with_ghostscript(input_path, repaired_path):
 
 ### Example 1: Extract I-797 Pages from H1B Packet
 ```python
-# Extract pages 7-8 (indices 6-7) from H1B approval packet
+# Extract pages 7-8 (indices 6-7) from Tax approval packet
 extract_pages(
-    input_path='/Users/username/Documents/H1B_FILING/H1B_Approval_Packet.pdf',
-    output_path='/Users/username/Documents/H1B_FILING/I797.pdf',
+    input_path='/Users/username/Documents/Tax_Approval/Tax_Approval_Packet.pdf',
+    output_path='/Users/username/Documents/Tax_Approval/Tax.pdf',
     start_page=6,  # 0-indexed
     end_page=7
 )
@@ -233,9 +233,9 @@ Example output:
 ```
 ✓ PDF Operation Complete
 
-Operation: Extracted pages 7-8 from H1B packet
-Input:  /Users/username/Documents/H1B_Packet.pdf (50 pages)
-Output: /Users/username/Documents/I797.pdf (2 pages)
+Operation: Extracted pages 7-8 from Tax packet
+Input:  /Users/username/Documents/Tax_Packet.pdf (50 pages)
+Output: /Users/username/Documents/Tax.pdf (2 pages)
 Status: Success (no repair needed)
 ```
 
