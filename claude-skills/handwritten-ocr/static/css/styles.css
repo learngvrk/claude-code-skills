@@ -1,0 +1,280 @@
+/* ── Reset & Base ──────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: linear-gradient(135deg, #f0f4ff 0%, #faf0ff 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    color: #1a1a2e;
+}
+
+/* ── Container ─────────────────────────────────────────────────────────────── */
+.container {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 2.5rem;
+    width: min(580px, 100%);
+    box-shadow: 0 8px 40px rgba(79, 70, 229, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Header ────────────────────────────────────────────────────────────────── */
+.header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ── Drop Zone ─────────────────────────────────────────────────────────────── */
+.drop-zone {
+    border: 2px dashed #c7d2fe;
+    border-radius: 12px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    background: #f8faff;
+    margin-bottom: 1rem;
+}
+
+.drop-zone:hover {
+    border-color: #818cf8;
+    background: #f0f4ff;
+}
+
+.drop-zone.drag-over {
+    border-color: #4f46e5;
+    background: #eef2ff;
+}
+
+.drop-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.drop-label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.25rem;
+}
+
+.drop-sub {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 0.75rem;
+}
+
+/* ── File Info ─────────────────────────────────────────────────────────────── */
+.file-info {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    color: #166534;
+    margin-bottom: 0.75rem;
+}
+
+/* ── Buttons ───────────────────────────────────────────────────────────────── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.65rem 1.4rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn-primary {
+    background: #4f46e5;
+    color: #ffffff;
+    width: 100%;
+    margin-top: 0.25rem;
+    padding: 0.8rem;
+    font-size: 1rem;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: #4338ca;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+.btn-primary:disabled {
+    background: #a5b4fc;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background: #e2e8f0;
+    color: #374151;
+}
+
+.btn-secondary:hover {
+    background: #cbd5e1;
+}
+
+.btn-success {
+    background: #16a34a;
+    color: #ffffff;
+    padding: 0.85rem 2rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+    display: block;
+    width: 100%;
+}
+
+.btn-success:hover {
+    background: #15803d;
+    box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+    width: 100%;
+    margin-top: 0.75rem;
+}
+
+.btn-ghost:hover {
+    background: #f8fafc;
+}
+
+/* ── Error Message ─────────────────────────────────────────────────────────── */
+.error-msg {
+    color: #dc2626;
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+}
+
+/* ── Progress Card ─────────────────────────────────────────────────────────── */
+.progress-card {
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
+/* Spinner */
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid #e0e7ff;
+    border-top-color: #4f46e5;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+    margin: 0 auto 1.25rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.status-label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 1rem;
+}
+
+.progress-bar-outer {
+    background: #e2e8f0;
+    border-radius: 99px;
+    height: 10px;
+    overflow: hidden;
+    margin-bottom: 0.75rem;
+}
+
+.progress-bar-inner {
+    background: linear-gradient(90deg, #4f46e5, #818cf8);
+    height: 100%;
+    width: 0%;
+    transition: width 0.5s ease;
+    border-radius: 99px;
+}
+
+.progress-text {
+    font-size: 0.88rem;
+    color: #64748b;
+}
+
+/* ── Result Cards ──────────────────────────────────────────────────────────── */
+.result-card {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
+}
+
+.result-card.success {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+}
+
+.result-card.error {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+}
+
+.result-icon {
+    font-size: 2.5rem;
+    color: #16a34a;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.error-icon {
+    color: #dc2626;
+}
+
+.result-card h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.result-sub {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 0.25rem;
+}
+
+.error-detail {
+    font-size: 0.88rem;
+    color: #dc2626;
+    margin: 0.75rem 0;
+    word-break: break-word;
+}
+
+/* ── Utility ───────────────────────────────────────────────────────────────── */
+.hidden {
+    display: none !important;
+}

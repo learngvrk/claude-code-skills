@@ -1,0 +1,78 @@
+# ══════════════════════════════════════════════════════════════════════════════
+# WHAT THIS REPO PUBLISHES (blog: Claude Code Skills for PDF & Handwritten OCR)
+#
+# ✅ INCLUDED:
+#   claude-skills/pdf-skills/       — SKILL.md for PDF manipulation
+#   claude-skills/handwritten-ocr/  — Flask web app + CLI skill for OCR
+#   python_framework_implementation/ — Python PDFSkill class + registry
+#   python_tools/pdf.py             — Original core PDF functions
+#   python_tools/main.py            — Original entry point
+#   CLAUDE.md                       — Project guidance doc
+#
+# ❌ EVERYTHING ELSE IS EXCLUDED BELOW
+# ══════════════════════════════════════════════════════════════════════════════
+
+
+# ── Unrelated project folders ─────────────────────────────────────────────────
+Call_Analytics/
+madhuri/
+Ranjith/
+claude_examples/
+
+# ── Loose scratch files at root (not part of the story) ──────────────────────
+demo_skills.py
+extract_pages.py
+meeting.txt
+ANTHROPIC_SKILLS_SUMMARY.md
+SKILLS_OVERVIEW.md
+
+# ── Local Claude Code settings (machine-specific, not repo content) ───────────
+.claude/
+
+# ── Personal PDF documents (keep code, exclude data files) ───────────────────
+python_tools/PDFs/
+
+# ── App runtime folders (transient, never commit) ────────────────────────────
+claude-skills/handwritten-ocr/uploads/
+claude-skills/handwritten-ocr/outputs/
+
+# ── API keys & secrets ────────────────────────────────────────────────────────
+.env
+.env.*
+*.env
+
+# ── Python virtual environments ──────────────────────────────────────────────
+.venv/
+venv/
+env/
+pdf_venv/
+**/.venv/
+**/venv/
+
+# ── Python bytecode & cache ───────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# ── Audio & video files ───────────────────────────────────────────────────────
+*.m4a
+*.mp3
+*.wav
+*.mp4
+*.mov
+
+# ── macOS system files ────────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ── IDE & editor files ────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Logs & temp files ─────────────────────────────────────────────────────────
+*.log
+*.tmp

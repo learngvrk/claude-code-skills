@@ -1,0 +1,14 @@
+# Core dependencies for the skills repository
+
+# PDF Skill dependencies
+PyPDF2>=3.0.0
+
+# Optional PDF repair dependencies
+pikepdf>=8.0.0  # Requires qpdf to be installed on system
+# Note: Ghostscript (gs) is a system-level dependency, install separately
+
+# Future skills can add their dependencies here
+# For example:
+# openpyxl>=3.0.0  # For Excel skill
+# Pillow>=10.0.0   # For Image skill
+# pandas>=2.0.0    # For Data skill

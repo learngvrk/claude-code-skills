@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handwritten PDF to Word Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Handwritten PDF to Word</h1>
+            <p class="subtitle">Upload a scanned handwritten PDF. Claude AI reads each page and produces a clean, editable Word document.</p>
+        </div>
+
+        <!-- Section 1: Upload -->
+        <div id="upload-section">
+            <form id="upload-form" enctype="multipart/form-data">
+                <div class="drop-zone" id="drop-zone">
+                    <div class="drop-icon">&#128196;</div>
+                    <p class="drop-label">Drag &amp; drop your PDF here</p>
+                    <p class="drop-sub">or</p>
+                    <button type="button" id="choose-btn" class="btn btn-secondary">Choose File</button>
+                    <input type="file" id="file-input" name="file" accept=".pdf" hidden>
+                </div>
+                <div id="file-info" class="file-info hidden"></div>
+                <div id="upload-error" class="error-msg hidden"></div>
+                <button type="submit" id="submit-btn" class="btn btn-primary" disabled>
+                    Convert to Word
+                </button>
+            </form>
+        </div>
+
+        <!-- Section 2: Processing Progress -->
+        <div id="progress-section" class="hidden">
+            <div class="progress-card">
+                <div class="spinner"></div>
+                <p id="status-label" class="status-label">Starting...</p>
+                <div class="progress-bar-outer">
+                    <div class="progress-bar-inner" id="progress-bar"></div>
+                </div>
+                <p id="progress-text" class="progress-text">Preparing...</p>
+            </div>
+        </div>
+
+        <!-- Section 3: Download -->
+        <div id="download-section" class="hidden">
+            <div class="result-card success">
+                <div class="result-icon">&#10003;</div>
+                <h2>Conversion Complete!</h2>
+                <p class="result-sub">Your handwritten document has been transcribed successfully.</p>
+                <a id="download-link" href="#" class="btn btn-success" download>
+                    &#8595; Download Word Document
+                </a>
+                <button id="convert-another-btn" class="btn btn-ghost">Convert Another PDF</button>
+            </div>
+        </div>
+
+        <!-- Section 4: Error -->
+        <div id="error-section" class="hidden">
+            <div class="result-card error">
+                <div class="result-icon error-icon">&#10007;</div>
+                <h2>Conversion Failed</h2>
+                <p id="processing-error" class="error-detail"></p>
+                <button id="retry-btn" class="btn btn-secondary">Try Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
